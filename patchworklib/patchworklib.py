@@ -410,7 +410,7 @@ def load_ggplot(ggplot=None, figsize=None):
         position_dict[key] = axtmp.get_position() 
 
     gcp = copy.deepcopy(ggplot) 
-    fig, gcp   = gcp.draw(return_ggplot=True)
+    fig, gcp   = gcp.draw()
     if figsize is None:
         figsize = fig.get_size_inches()  
     _themeable = fig._themeable
