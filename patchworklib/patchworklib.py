@@ -410,7 +410,11 @@ def load_ggplot(ggplot=None, figsize=None):
         position_dict[key] = axtmp.get_position() 
 
     gcp = copy.deepcopy(ggplot) 
-    fig, gcp   = gcp.draw()
+    
+    if StrictVersion(plotnine_version) >= StrictVersion("0.12.1"):
+        fig = gcp.draw()
+    else:
+        fig, gcp   = gcp.draw(return_ggplot=True)
     if figsize is None:
         figsize = fig.get_size_inches()  
     _themeable = fig._themeable
@@ -523,7 +527,7 @@ def load_ggplot(ggplot=None, figsize=None):
         bricks = expand(bricks, width, height)        
         
         if StrictVersion(plotnine_version) >= StrictVersion("0.9"):
-            draw_labels(bricks, ggplot, gcp) 
+            (_labels(bricks, ggplot, gcp) 
             draw_legend(bricks, ggplot, gcp, figsize)
             draw_title(bricks,  ggplot, gcp, figsize)
         
