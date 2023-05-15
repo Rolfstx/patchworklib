@@ -527,7 +527,7 @@ def load_ggplot(ggplot=None, figsize=None):
         bricks = expand(bricks, width, height)        
         
         if StrictVersion(plotnine_version) >= StrictVersion("0.9"):
-            (_labels(bricks, ggplot, gcp) 
+            draw_labels(bricks, ggplot, gcp) 
             draw_legend(bricks, ggplot, gcp, figsize)
             draw_title(bricks,  ggplot, gcp, figsize)
         
